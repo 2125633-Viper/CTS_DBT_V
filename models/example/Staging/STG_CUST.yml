@@ -6,4 +6,5 @@ sources:
     database: QWT_DEV
     schema: RAW_DEV
     tables:
-      - name: Raw_Customers
+      - name: raw_customers
+      - name: raw_products
