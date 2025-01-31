@@ -1,0 +1,9 @@
+version: 2
+ {{ config(materialized='table') }}
+ 
+sources:
+  - name: raw_qwt
+    database: QWT_DEV
+    schema: RAW_DEV
+    tables:
+      - name: Raw_Customers
