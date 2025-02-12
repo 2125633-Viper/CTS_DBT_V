@@ -13,5 +13,5 @@ sources:
       - name: Raw_Employee
       - name: raw_offices
       - name: raw_shipments
-      - name: Raw_Suppliers
+      - name: RAW_SUPPLIERS
 

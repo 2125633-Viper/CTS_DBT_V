@@ -1,3 +1,3 @@
 {{ config(materialized='table') }}
 
-select *from {{source('raw_qwt',' Raw_Suppliers')}}
+select * from {{source('raw_qwt','RAW_SUPPLIERS')}}

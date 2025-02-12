@@ -36,7 +36,16 @@ clean-targets:         # directories to be removed by `dbt clean`
 # using the `{{ config(...) }}` macro.
 vars:
   v_country : "Sweden"
-  
+  "dbt_date:time_zone" : "Asia/kolkata"
+
+on-run-start: "use warehouse DBT_QUERIES;"
+on-run-end: "Grant select on QWT_DEV.AUDITING_DEV.MODEL_AUDITING_LOG to role public;"
+
 models:
-    example:
-      +materialized: table
+  pre-hook:
+    - "insert into auditing_dev.model_auditing_log(model_name,starttime,endtime,duration) values ('{{this}}', current_timestamp(), null,null)"
+  post-hook:
+    - "update auditing_dev.model_auditing_log set endtime = current_timestamp(),duration = datediff('second',starttime,current_timestamp()) where model_name = '{{this}}'"
+
+seeds:
+  schema: LOOKUP_DEV
